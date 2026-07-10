@@ -3,7 +3,9 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
+import os
 from app.config import settings
 from app.database import init_db
 
@@ -81,6 +83,12 @@ app.include_router(image.router, prefix="/api/images")
 app.include_router(voice.router, prefix="/api/voice")
 app.include_router(files.router, prefix="/api/files")
 app.include_router(providers.router, prefix="/api/providers")
+
+
+# Serve local uploads (fallback when Supabase Storage is unavailable)
+uploads_dir = os.path.join(os.path.dirname(__file__), "..", "uploads")
+os.makedirs(uploads_dir, exist_ok=True)
+app.mount("/uploads", StaticFiles(directory=uploads_dir), name="uploads")
 
 
 @app.get("/api/health")
