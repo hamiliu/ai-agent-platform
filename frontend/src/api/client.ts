@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const baseURL = import.meta.env.VITE_API_BASE_URL || '/'
+const BACKEND_URL = 'http://101.96.203.124:8000'
+const baseURL = import.meta.env.VITE_API_BASE_URL || BACKEND_URL
 
 const apiClient = axios.create({
   baseURL,
@@ -37,7 +38,7 @@ export function streamChat(params: {
   conversation_id?: string
   temperature?: number
 }): Promise<Response> {
-  const base = import.meta.env.VITE_API_BASE_URL || ''
+  const base = import.meta.env.VITE_API_BASE_URL || BACKEND_URL
   return fetch(`${base}/api/chat/stream`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
