@@ -18,7 +18,7 @@ export default function ImageToImagePage() {
     getProviders().then((data) => {
       const imageProviders = data.image || {}
       setProviders(imageProviders)
-      // 优先选 stability
+      // 优先选 stability（阿里不支持图生图）
       const preferred = imageProviders['stability'] ? 'stability'
                      : Object.keys(imageProviders)[0] || ''
       if (preferred) {

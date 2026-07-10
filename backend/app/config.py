@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     # Image providers
     OPENAI_IMAGE_API_KEY: str = ""
     STABILITY_API_KEY: str = ""
+    ALIBABA_API_KEY: str = ""
 
     # Voice providers
     ELEVENLABS_API_KEY: str = ""

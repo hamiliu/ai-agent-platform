@@ -19,6 +19,7 @@ def _register_providers():
     from app.providers.image.registry import ImageProviderRegistry
     from app.providers.image.openai_image import OpenAIImageProvider
     from app.providers.image.stability_image import StabilityImageProvider
+    from app.providers.image.alibaba_image import AlibabaImageProvider
 
     from app.providers.voice.registry import VoiceProviderRegistry
     from app.providers.voice.elevenlabs_voice import ElevenLabsVoiceProvider
@@ -41,6 +42,10 @@ def _register_providers():
     if settings.STABILITY_API_KEY:
         ImageProviderRegistry.register(
             StabilityImageProvider(settings.STABILITY_API_KEY)
+        )
+    if settings.ALIBABA_API_KEY:
+        ImageProviderRegistry.register(
+            AlibabaImageProvider(settings.ALIBABA_API_KEY)
         )
 
     # Voice providers

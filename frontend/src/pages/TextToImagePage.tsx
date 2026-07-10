@@ -15,8 +15,9 @@ export default function TextToImagePage() {
     getProviders().then((data) => {
       const imageProviders = data.image || {}
       setProviders(imageProviders)
-      // 优先选 stability（OpenAI 额度可能不足）
-      const preferred = imageProviders['stability'] ? 'stability'
+      // 优先选 alibaba（阿里通义万相免费额度）
+      const preferred = imageProviders['alibaba'] ? 'alibaba'
+                     : imageProviders['stability'] ? 'stability'
                      : Object.keys(imageProviders)[0] || ''
       if (preferred) {
         setSelectedProvider(preferred)
